@@ -26,7 +26,7 @@ public class Arquivos {
     	person3.setAge(34);
     	
     	//put on the list (person 1,2 and 3 )
-    	//it can go for a database or any other sources
+    	//it be set on database or any other sources
     	List<Person> person = new ArrayList<Person>();
     	person.add(person1);
     	person.add(person2);
