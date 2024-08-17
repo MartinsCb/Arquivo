@@ -1,6 +1,3 @@
 Andre ; andremartins.a@outlook.com ; 33
 Delane ; delane@gmail.com ; 32
 Barbara ; barbara@gmail.com ; 34
-//posso adicionar mais elementos atraves do FileInputStream
-
-Fernanda ; fernanda@gmail.com ; 28

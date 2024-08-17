@@ -23,6 +23,11 @@ public class Person {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+	@Override
+	public String toString() {
+		return String.format(" Person [ name  : " + name + ", email: " + email + " , age: " + age + "]"  );
+	}
+
 
 
 	
