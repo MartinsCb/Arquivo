@@ -5,6 +5,7 @@ public class Person {
 	private String name;
 	private String email;
 	private Integer age;
+	
 	public String getName() {
 		return name;
 	}
@@ -27,9 +28,5 @@ public class Person {
 	public String toString() {
 		return String.format(" Person [ name  : " + name + ", email: " + email + " , age: " + age + "]"  );
 	}
-
-
-
-	
 	
 }

@@ -34,7 +34,7 @@ public class Arquivos {
     	
         try {
             // Define the file path
-            File arquivo = new File("C:\\Users\\marti\\git\\repository5\\arquivos\\src\\arquivos\\arquivo.txt");
+            File arquivo = new File("C:\\Users\\marti\\git\\repository5\\arquivos\\src\\arquivos\\arquivo.csv");
 
             // Check if the file exists, if not, create it
             if (!arquivo.exists()) {
