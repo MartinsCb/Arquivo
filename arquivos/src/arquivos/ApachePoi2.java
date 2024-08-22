@@ -16,53 +16,71 @@ import org.apache.poi.ss.usermodel.Row;
 public class ApachePoi2 {
 
     public static void main(String[] args) throws IOException {
-        
+
+        // Abre o arquivo Excel
         FileInputStream entrada = new FileInputStream(new File(
                 "C:\\Users\\marti\\git\\repository5\\arquivos\\src\\arquivos\\arquivo_excel.xls"));
-        
-        HSSFWorkbook hssfWorkbook = new HSSFWorkbook(entrada); // Prepara o arquivo para leitura
+
+        // Prepara o arquivo para leitura
+        HSSFWorkbook hssfWorkbook = new HSSFWorkbook(entrada);
         HSSFSheet planilha = hssfWorkbook.getSheetAt(0); // Pega a primeira planilha
         Iterator<Row> linhaIterator = planilha.iterator();
-        
-        List<Person> pessoas = new ArrayList<Person>();
-        
+
+        // Lista para armazenar objetos Person
+        List<Person> pessoas = new ArrayList<>();
+
+        // Itera sobre as linhas da planilha
         while (linhaIterator.hasNext()) {
             Row linha = linhaIterator.next();
-            Iterator<Cell> celula = linha.iterator();
-            
+            Iterator<Cell> celulaIterator = linha.iterator();
+
+            // Cria um novo objeto Person para cada linha
             Person person = new Person();
-            
-            while (celula.hasNext()) {
-                Cell cell = celula.next();
-                
+
+            // Itera sobre as células da linha
+            while (celulaIterator.hasNext()) {
+                Cell cell = celulaIterator.next();
+
+                // Verifica o índice da coluna para processar os dados corretamente
                 switch (cell.getColumnIndex()) {
-                    case 0: // Coluna Nome
+                    case 0: // Nome
                         if (cell.getCellType() == CellType.STRING) {
                             person.setName(cell.getStringCellValue());
                         } else if (cell.getCellType() == CellType.NUMERIC) {
                             person.setName(String.valueOf(cell.getNumericCellValue()));
                         }
                         break;
-                    case 1: // Coluna Email
+
+                    case 1: // Email
                         if (cell.getCellType() == CellType.STRING) {
                             person.setEmail(cell.getStringCellValue());
                         } else if (cell.getCellType() == CellType.NUMERIC) {
                             person.setEmail(String.valueOf(cell.getNumericCellValue()));
                         }
                         break;
-                    case 2: // Coluna Idade
+
+                    case 2: // Idade
                         if (cell.getCellType() == CellType.NUMERIC) {
-                            person.setAge(Double.valueOf(cell.getNumericCellValue()).intValue());
+                            person.setAge((int) cell.getNumericCellValue());
                         } else if (cell.getCellType() == CellType.STRING) {
-                            person.setAge(Integer.parseInt(cell.getStringCellValue()));
+                            try {
+                                person.setAge(Integer.parseInt(cell.getStringCellValue()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Erro ao converter idade: " + e.getMessage());
+                            }
                         }
                         break;
                 }
             }
+
+            // Adiciona o objeto Person à lista
             pessoas.add(person);
         }
+
+        // Fecha o arquivo
         entrada.close();
-        
+
+        // Imprime os dados das pessoas
         for (Person person : pessoas) {
             System.out.println(person);
         }
